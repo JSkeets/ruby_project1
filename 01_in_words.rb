@@ -74,7 +74,19 @@ class Fixnum
     when 8000 then return "eight thousand"
     when (8001.. 8999) then return "eight thousand" + " " + hundreds(self)
     when 9000 then return "nine thousand"
-    when (9001..9999) then return "nine thousand" + " " + hundres(self)
+    when (9001..9999) then return "nine thousand" + " " + hundreds(self)
+    when (10000..99999) then return tensthousands(self)
+    when (100000..999999) then return hundredthousands(self)
+    when (1000000 .. 9999999) then return millions(self)
+    when (10000000 .. 99999999) then return tenmillions(self)
+    when (100000000..999999999) then return hundredmillions(self)
+    when (1000000000..9999999999) then return billions(self)
+    when (10000000000..99999999999) then return tenbillions(self)
+    when (100000000000..999999999999) then return hundredbillions(self)
+    when (1000000000000..9999999999999) then return trillions(self)
+    when (10000000000000..99999999999999) then return tentrillions(self)
+    when (100000000000000..999999999999999) then return hundredtrillions(self)
+
 
    end
 end
@@ -95,5 +107,94 @@ private
   def thousands(num)
     num.to_s.chars[0].to_i.in_words + " "+ "thousand" + " "
   end
+
+  def tensthousands(num)
+  if (num.to_s.chars[2..-1].join.to_i) != 000
+    (num.to_s.chars.take(2).join.to_i).in_words + " " + "thousand" + " " + (num.to_s.chars[2..-1].join.to_i).in_words
+  else
+    (num.to_s.chars.take(2).join.to_i).in_words + " " + "thousand"
+  end
+  end
+
+  def hundredthousands(num)
+    if (num.to_s.chars[3..-1].join.to_i) != 0000
+    (num.to_s.chars.take(3).join.to_i).in_words + " " + "thousand" + " " + (num.to_s.chars[3..-1].join.to_i).in_words
+    else
+      (num.to_s.chars.take(3).join.to_i).in_words + " " + "thousand"
+    end
+  end
+
+  def millions(num)
+    if (num.to_s.chars[4..-1].join.to_i) != 00000
+    (num.to_s.chars.take(1).join.to_i).in_words + " " + "million" + " " + (num.to_s.chars[1..-1].join.to_i).in_words
+    else
+      (num.to_s.chars.take(1).join.to_i).in_words + " " + "million"
+    end
+  end
+
+  def tenmillions(num)
+    if (num.to_s.chars[5..-1].join.to_i) != 00000
+    (num.to_s.chars.take(2).join.to_i).in_words + " " + "million" + " " + (num.to_s.chars[2..-1].join.to_i).in_words
+    else
+      (num.to_s.chars.take(2).join.to_i).in_words + " " + "million"
+    end
+  end
+
+  def hundredmillions(num)
+    if (num.to_s.chars[6..-1].join.to_i) != 000000
+    (num.to_s.chars.take(3).join.to_i).in_words + " " + "million" + " " + (num.to_s.chars[3..-1].join.to_i).in_words
+    else
+      (num.to_s.chars.take(3).join.to_i).in_words + " " + "million"
+    end
+  end
+
+  def billions(num)
+      if (num.to_s.chars[7..-1].join.to_i) != 0000000
+      (num.to_s.chars.take(1).join.to_i).in_words + " " + "billion" + " " + (num.to_s.chars[1..-1].join.to_i).in_words
+      else
+        (num.to_s.chars.take(1).join.to_i).in_words + " " + "billion"
+      end
+  end
+
+    def tenbillions(num)
+      if (num.to_s.chars[8..-1].join.to_i) != 00000000
+      (num.to_s.chars.take(2).join.to_i).in_words + " " + "billion" + " " + (num.to_s.chars[2..-1].join.to_i).in_words
+      else
+        (num.to_s.chars.take(2).join.to_i).in_words + " " + "billion"
+      end
+    end
+
+    def hundredbillions(num)
+      if (num.to_s.chars[9..-1].join.to_i) != 000000000
+      (num.to_s.chars.take(3).join.to_i).in_words + " " + "billion" + " " + (num.to_s.chars[3..-1].join.to_i).in_words
+      else
+        (num.to_s.chars.take(3).join.to_i).in_words + " " + "billion"
+      end
+    end
+
+    def trillions(num)
+        if (num.to_s.chars[10..-1].join.to_i) != 0000000000
+        (num.to_s.chars.take(1).join.to_i).in_words + " " + "trillion" + " " + (num.to_s.chars[1..-1].join.to_i).in_words
+        else
+          (num.to_s.chars.take(1).join.to_i).in_words + " " + "trillion"
+        end
+    end
+
+      def tentrillions(num)
+        if (num.to_s.chars[11..-1].join.to_i) != 00000000000
+        (num.to_s.chars.take(2).join.to_i).in_words + " " + "trillion" + " " + (num.to_s.chars[2..-1].join.to_i).in_words
+        else
+          (num.to_s.chars.take(2).join.to_i).in_words + " " + "trillion"
+        end
+      end
+
+      def hundredtrillions(num)
+        if (num.to_s.chars[12..-1].join.to_i) != 000000000000
+        (num.to_s.chars.take(3).join.to_i).in_words + " " + "trillion" + " " + (num.to_s.chars[3..-1].join.to_i).in_words
+        else
+          (num.to_s.chars.take(3).join.to_i).in_words + " " + "trillion"
+        end
+      end
+
 
 end
